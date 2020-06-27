@@ -1,0 +1,134 @@
+
+<!-- Toolbar Starts -->
+
+<mat-toolbar color="primary">
+    <button onClick="window.open('https://material.angular.io/')" class="transparent no-border"
+        mat-icon-button aria-label="Angular Material AutoComplete">
+        <mat-icon>
+            <img class="full-width fill-height" src="../assets/img/angular.png"/>
+        </mat-icon>
+    </button>
+    <span>AutoComplete</span>
+    <span class="example-spacer"></span>
+    <button onClick="window.open('https://github.com/vivsvaan')" mat-icon-button class="transparent no-border"
+        aria-label="Example icon-button with heart icon">
+        <mat-icon>
+            <img class="full-width fill-height" src="../assets/img/github.png"/>
+        </mat-icon>
+    </button>
+    <button onClick="window.open('https://www.linkedin.com/in/vivsvaan/')" mat-icon-button class="transparent no-border"
+        aria-label="Example icon-button with share icon">
+        <mat-icon>
+            <img class="full-width fill-height" src="../assets/img/linkedin.png" />
+        </mat-icon>
+    </button>
+    <button onClick="window.open('https://twitter.com/vivsvaan')" mat-icon-button class="transparent no-border"
+        aria-label="Example icon-button with share icon">
+        <mat-icon>
+            <img class="full-width fill-height" src="../assets/img/twitter.png" />
+        </mat-icon>
+    </button>
+</mat-toolbar>
+
+<!-- Toolbar Ends -->
+
+<!-- Content Starts -->
+
+<div class="container-wrapper">
+    <div class="container">
+
+        <!-- DropdowList Card -->
+        <div class="card-wrapper">
+            <mat-card class="no-padding">
+                <mat-card-header class="fill-primary padding">
+                    <div mat-card-avatar class="">
+                        <img class="full-width fill-height" src="../assets/img/checklist.png" />
+                    </div>
+                    <mat-card-title>Dropdown Menu</mat-card-title>
+                    <mat-card-subtitle>List of items in Dropdown</mat-card-subtitle>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <mat-grid-list cols="3" rowHeight="2:1">
+                        <mat-grid-tile *ngFor="let item of dropdownList">
+                            <mat-list-item class="align-left" role="listitem">{{ item }}</mat-list-item>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <!-- DropdownList Card Ends -->
+
+        <!-- Form Input Cards Starts -->
+        <div class="card-wrapper">
+            <div>
+
+                <!-- Mat Autocomplete without directive -->
+                <mat-card class="no-padding">
+                    <mat-card-header onClick="window.open('https://material.angular.io/components/autocomplete/overview')"
+                        class="fill-primary padding hover-scale">
+                        <div mat-card-avatar class="">
+                            <img class="full-width fill-height" src="../assets/img/visit.png" />
+                        </div>
+                        <mat-card-title>Mat AutoComplete</mat-card-title>
+                        <mat-card-subtitle>This is mat-autocomplete without my custom directive</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <mat-card-content>
+                        <div class="margin padding" [formGroup]="myFormGroup1">
+                            <mat-form-field color="primary">
+                                <input type="text" placeholder="Enter Name" matInput formControlName="myControl"
+                                    [matAutocomplete]="auto"/>
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option">
+                                        {{ option }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <mat-error *ngIf="myFormGroup1.controls.myControl.hasError('required')">
+                                    Name is Required
+                                </mat-error>
+                                <mat-error *ngIf="myFormGroup1.controls.myControl.hasError('noOption')">
+                                    Name not Found
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <!-- Mat Autocomplete with Directive -->
+                <mat-card class="no-padding">
+                    <mat-card-header class="fill-primary padding hover-scale">
+                        <div mat-card-avatar class="">
+                            <img class="full-width fill-height" src="../assets/img/correct.png"/>
+                        </div>
+                        <mat-card-title>Mat AutoComplete Custom</mat-card-title>
+                        <mat-card-subtitle >This is mat-autocomplete with my custom directive</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <mat-card-content>
+                        <div class="margin padding" [formGroup]="myFormGroup2">
+                            <mat-form-field color="primary">
+                                <input type="text" placeholder="Enter Name" matInput formControlName="myControl" [matAutocomplete]="auto"
+                                    appAutoSelectValue [dropdownList]="filteredOptions2" />
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions2"[value]="option">
+                                        {{ option }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <mat-error *ngIf="myFormGroup2.controls.myControl.hasError('required')">
+                                    Name is Required
+                                </mat-error>
+                                <mat-error *ngIf="myFormGroup2.controls.myControl.hasError('noOption')">
+                                    Name not Found
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <!-- Form Input Card Ends Here -->
+    </div>
+</div>
+
+<!-- Content Ends -->
