@@ -38,7 +38,7 @@
     <div class="container">
 
         <!-- DropdowList Card -->
-        <div class="card-wrapper">
+        <div class="card-wrapper dropdownlist">
             <mat-card class="no-padding">
                 <mat-card-header class="fill-primary padding">
                     <div mat-card-avatar class="">
@@ -60,7 +60,7 @@
         <!-- DropdownList Card Ends -->
 
         <!-- Form Input Cards Starts -->
-        <div class="card-wrapper">
+        <div class="card-wrapper autocomplete">
             <div>
 
                 <!-- Mat Autocomplete without directive -->
@@ -77,19 +77,13 @@
                     <mat-card-content>
                         <div class="margin padding" [formGroup]="myFormGroup1">
                             <mat-form-field color="primary">
-                                <input type="text" placeholder="Enter Name" matInput formControlName="myControl"
-                                    [matAutocomplete]="auto"/>
-                                <mat-autocomplete #auto="matAutocomplete">
+                                <input type="text" placeholder="Enter Name" matInput formControlName="myControl1"
+                                    [matAutocomplete]="auto1"/>
+                                <mat-autocomplete #auto1="matAutocomplete">
                                     <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option">
                                         {{ option }}
                                     </mat-option>
                                 </mat-autocomplete>
-                                <mat-error *ngIf="myFormGroup1.controls.myControl.hasError('required')">
-                                    Name is Required
-                                </mat-error>
-                                <mat-error *ngIf="myFormGroup1.controls.myControl.hasError('noOption')">
-                                    Name not Found
-                                </mat-error>
                             </mat-form-field>
                         </div>
                     </mat-card-content>
@@ -108,20 +102,28 @@
                     <mat-card-content>
                         <div class="margin padding" [formGroup]="myFormGroup2">
                             <mat-form-field color="primary">
-                                <input type="text" placeholder="Enter Name" matInput formControlName="myControl" [matAutocomplete]="auto"
+                                <input type="text" placeholder="Enter Name" matInput formControlName="myControl2" [matAutocomplete]="auto2"
                                     appAutoSelectValue [dropdownList]="filteredOptions2" />
-                                <mat-autocomplete #auto="matAutocomplete">
+                                <mat-autocomplete #auto2="matAutocomplete">
                                     <mat-option *ngFor="let option of filteredOptions2"[value]="option">
                                         {{ option }}
                                     </mat-option>
                                 </mat-autocomplete>
-                                <mat-error *ngIf="myFormGroup2.controls.myControl.hasError('required')">
+                                <mat-error *ngIf="myFormGroup2.controls.myControl2.hasError('required')">
                                     Name is Required
                                 </mat-error>
-                                <mat-error *ngIf="myFormGroup2.controls.myControl.hasError('noOption')">
+                                <mat-error *ngIf="myFormGroup2.controls.myControl2.hasError('noOption')">
                                     Name not Found
                                 </mat-error>
                             </mat-form-field>
+                        </div>
+                        <div class="margin padding">
+                            If you write any incomplete value and the dropdown list shows filtered results for that value, 
+                            on Blur, the input value will be set to top value appearing in dropdown list.
+                            <br><br>
+                            If you write any value which is not found in the filtered results,
+                            on Blur the input value will be det to Null and error will be shown.<br>
+
                         </div>
                     </mat-card-content>
                 </mat-card>

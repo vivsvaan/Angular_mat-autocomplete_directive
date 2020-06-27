@@ -49,10 +49,10 @@ export class AppComponent implements OnInit {
 
     constructor() {
         this.myFormGroup1 = new FormGroup({
-            myControl: new FormControl(),
+            myControl1: new FormControl(),
         });
         this.myFormGroup2 = new FormGroup({
-            myControl: new FormControl('', [
+            myControl2: new FormControl('', [
                 Validators.required,
                 this.optionNotFound.bind(this),
             ]),
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         // Mat Autocomplete function
-        this.filteredOptions1 = this.myFormGroup1.controls.myControl.valueChanges.pipe(
+        this.filteredOptions1 = this.myFormGroup1.controls.myControl1.valueChanges.pipe(
             startWith(''),
             map((value) => this._filter(value))
         );
